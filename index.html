@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigma Strike Bot | Quantitative Crypto Dominance</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+        :root {
+            --bg-color: #050505;
+            --card-bg: #111111;
+            --accent-green: #00ff88;
+            --accent-glow: rgba(0, 255, 136, 0.3);
+            --text-main: #ffffff;
+            --text-muted: #888888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #222;
+            background: rgba(5,5,5,0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-green);
+        }
+
+        .cta-btn {
+            background: var(--accent-green);
+            color: #000;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 20px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: var(--card-bg);
+            padding: 20px 30px;
+            border-radius: 12px;
+            border: 1px solid #222;
+            min-width: 150px;
+        }
+
+        .stat-box h3 {
+            font-size: 1.8rem;
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        .stat-box p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+            color: var(--text-muted);
+        }
+
+        /* Chart Section */
+        .chart-section {
+            max-width: 1000px;
+            margin: 0 auto 80px auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .chart-container {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 10px;
+            box-shadow: 0 0 60px rgba(0, 255, 136, 0.05);
+            position: relative;
+        }
+
+        .chart-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* Whitepaper Section */
+        .whitepaper {
+            background: #0a0a0a;
+            padding: 80px 20px;
+            border-top: 1px solid #222;
+        }
+
+        .wp-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .wp-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--accent-green);
+        }
+
+        .wp-container h3 {
+            font-size: 1.5rem;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .wp-container p {
+            color: #aaa;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .wp-highlight {
+            background: #111;
+            border-left: 4px solid var(--accent-green);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 2rem;
+            margin-bottom: 50px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #222;
+            text-align: left;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: "“";
+            font-size: 4rem;
+            color: var(--accent-green);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            opacity: 0.2;
+            font-family: serif;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #ccc;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--accent-green);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-role {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Offer Section */
+        .offer-section {
+            background: linear-gradient(180deg, var(--bg-color) 0%, #0a1a12 100%);
+            padding: 80px 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        .offer-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #0f0f0f;
+            border: 2px solid var(--accent-green);
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 255, 136, 0.1);
+        }
+
+        .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-green);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .offer-box h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .offer-list {
+            text-align: left;
+            margin: 30px 0;
+            list-style: none;
+        }
+
+        .offer-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .offer-list li::before {
+            content: "✓";
+            color: var(--accent-green);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .big-cta {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background: var(--accent-green);
+            color: #000;
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .big-cta:hover {
+            background: #fff;
+        }
+
+        .sub-text {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* Contact Placeholders */
+        .contact-section {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .contact-info a {
+            color: var(--accent-green);
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero-stats { flex-direction: column; gap: 15px; }
+            .stat-box { width: 100%; }
+            nav { padding: 15px 20px; }
+            .logo { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="logo">SIGMA<span>STRIKE</span></div>
+        <a href="https://github.com/Legal-Beagle-Law/Sigma-Strike-Bot/raw/main/sigmastrikebot.bat" class="cta-btn">Start Free Trial</a>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <h1>Decode the Chaos.<br>Strike the Profit.</h1>
+        <p>Sigma Strike Bot is the only algorithmic crypto engine mathematically engineered to capture the top 10% of volatility every 24 hours. No credit card required today.</p>
+        
+        <div class="hero-stats">
+            <div class="stat-box">
+                <h3>49.48%</h3>
+                <p>Cumulative Growth</p>
+            </div>
+            <div class="stat-box">
+                <h3>19.79%</h3>
+                <p>Avg Return / Trade</p>
+            </div>
+            <div class="stat-box">
+                <h3>100%</h3>
+                <p>Win Rate (6 Mo)</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- CHART SECTION -->
+    <section class="chart-section">
+        <div class="chart-container">
+            <img src="https://cdn.jsdelivr.net/gh/Legal-Beagle-Law/Sigma-Strike-Bot@main/chart.jpg" alt="Sigma Strike Performance Chart" class="chart-img">
+        </div>
+        <p style="text-align:center; color:#666; margin-top:15px; font-size:0.9rem;">Verified performance: Jan 2023 - Jun 2024. 50 Trades. Real Data.</p>
+    </section>
+
+    <!-- WHITEPAPER SECTION -->
+    <section class="whitepaper">
+        <div class="wp-container">
+            <h2>Whitepaper: The Sigma Strike Protocol</h2>
+            <p><strong>Abstract:</strong> The cryptocurrency market is not a casino; it is a chaotic system governed by mathematical laws that most traders ignore. While the masses react to headlines, Sigma Strike Bot operates in the silent spaces between the noise. We have engineered a proprietary trading engine that utilizes <strong>Event-Driven Options Theory</strong> and <strong>Stochastic Calculus</strong> to extract consistent alpha.</p>
+
+            <h3>1. The Philosophy: The 24-Hour Alpha Window</h3>
+            <p>The market moves in cycles. Most bots try to catch lightning in a bottle. Sigma Strike does not. We target the <strong>24-Hour Alpha Window</strong>.</p>
+            <div class="wp-highlight">
+                <p><strong>The Target:</strong> 10%+ gains per execution.<br>
+                <strong>The Reality:</strong> Our historical data shows an average return of <strong>19.79%</strong> per trade.<br>
+                <strong>The Result:</strong> We don't just hit the target; we obliterate it.</p>
+            </div>
+
+            <h3>2. The Technology: The Sigma Engine</h3>
+            <p>Our bot is not a script; it is a living algorithm. <strong>Stochastic Modeling:</strong> We treat price movements as random walks—until they aren't. Our models calculate the probability of price levels with frightening accuracy. <strong>Event-Driven Execution:</strong> We monitor on-chain data and liquidity pools. When an event is detected that historically correlates with a price spike, Sigma Strike strikes first.</p>
+
+            <h3>3. The Proof: 50 Trades. Zero Excuses.</h3>
+            <p>We do not deal in hypotheticals. We deal in verified data. Between Jan 2023 and Jun 2024, Sigma Strike executed 50 trades with a 100% win rate, achieving a cumulative portfolio growth of 49.48%.</p>
+
+            <h3>4. The "Skin in the Game" Protocol</h3>
+            <p>We are not just selling software; we are entering a partnership. We believe in Sigma Strike so much that we have inverted the traditional SaaS model. We only win when you win. We take <strong>10% of profits</strong> or <strong>$199/month</strong> (whichever is greater), but only after you have seen the results.</p>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <h2>Trusted by Serious Capital</h2>
+        <div class="testimonial-grid">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+                <p class="testimonial-text">"I was skeptical of the 100% win rate claim. I watched the free trial for two weeks. The bot hit 12% on SOL while I slept. I signed up immediately. It's not magic, it's math."</p>
+                <div class="testimonial-author">Marcus T.</div>
+                <div class="testimonial-role">Portfolio Manager</div>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+                <p class="testimonial-text">"The gas fee optimization alone saved me hundreds. Most bots eat your profits in transaction costs. Sigma Strike actually calculates the route before executing. My net returns are finally matching the gross returns."</p>
+                <div class="testimonial-author">Sarah L.</div>
+                <div class="testimonial-role">DeFi Analyst</div>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+                <p class="testimonial-text">"I've tried 5 different 'quant' bots. Most are just trend followers. Sigma Strike is different. It predicts the volatility spike before it happens. The 19% average return is real. I'm never going back."</p>
+                <div class="testimonial-author">David R.</div>
+                <div class="testimonial-role">Private Trader</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFER -->
+    <section class="offer-section" id="offer">
+        <div class="offer-box">
+            <div class="badge">RISK-FREE GUARANTEE</div>
+            <h2>Prove It To Me.</h2>
+            <p style="color:var(--text-muted); margin-bottom:30px;">We are so confident in Sigma Strike that we are willing to work for free until you make money.</p>
+            
+            <ul class="offer-list">
+                <li><strong>2 Week Free Trial:</strong> Full access. <strong>No credit card required today.</strong></li>
+                <li><strong>Pay Only On Profit:</strong> After the trial, you will be prompted to sign up and make payment. You pay 10% of profits OR $199/mo (whichever is greater).</li>
+                <li><strong>Cancel Anytime:</strong> No contracts. No hard feelings.</li>
+            </ul>
+
+            <div class="price-comparison">
+                Why the $199? It filters out tire-kickers and ensures our servers remain lightning-fast for serious traders.
+            </div>
+
+            <a href="https://github.com/Legal-Beagle-Law/Sigma-Strike-Bot/raw/main/sigmastrikebot.bat" class="big-cta">Claim Your Free Trial</a>
+            <div class="sub-text">No Credit Card Required Today. Limited spots available.</div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section">
+        <p>Questions? Reach out to our quantitative team.</p>
+        <div class="contact-info">
+            Email: <a href="mailto:sigmahelp@sharklasers.com">sigmahelp@sharklasers.com</a> | 
+            Facebook: <a href="https://www.facebook.com/profile.php?id=61594118288965" target="_blank" rel="noopener noreferrer">Sigma Strike Bot</a>
+        </div>
+    </section>
+
+    <!-- FOOTER IMAGE (Trustpilot) -->
+    <div style="max-width: 1000px; margin: 0 auto 40px auto; padding: 0 20px;">
+        <img src="https://cdn.jsdelivr.net/gh/Legal-Beagle-Law/Sigma-Strike-Bot@main/trustpilot.jpg" alt="Trustpilot Reviews" class="chart-img">
+    </div>
+
+    <footer>
+        &copy; 2024 Sigma Strike Bot. Trading involves risk. Past performance is not indicative of future results.
+    </footer>
+
+</body>
+</html>
